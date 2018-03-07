@@ -61,7 +61,6 @@ module ActsAsFu
 
   def model_eval(klass, &block)
     class << klass
-      prepend
       def method_missing(sym, *args, &block)
         ActsAsFu::Connection.connection.change_table(table_name) do |t|
           t.send(sym, *args)
